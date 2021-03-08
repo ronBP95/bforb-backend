@@ -1,3 +1,4 @@
+
 //users
 
 // name: String,
@@ -11,6 +12,9 @@
 // isHost: Boolean,
 // guest: [guestSchema],
 // host: [hostSchema]
+
+const db = require('./models');
+const createUsers = db.users.create(
 
 [
     {
@@ -97,4 +101,4 @@
         host: [hostSchema]
         
     }
-]
+])

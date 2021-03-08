@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
-import guestSchema from './guestSchema'
-import hostSchema from './hostSchema'
+import guestSchema from './models/guestSchema'
+import hostSchema from './models/hostSchema'
 
 const userSchema = new Schema({
     name: String,
@@ -17,9 +17,4 @@ const userSchema = new Schema({
     host: [hostSchema]
 })
 
-const placesToStaySchema = new Schema({
-    location: String,
-    bedPhoto: String,
-    description: String,
-    rating: Number
-})
+
