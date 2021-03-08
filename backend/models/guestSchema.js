@@ -10,4 +10,5 @@ const guestSchema = new Schema({
     comments: [commentsSchema]
 })
 
-export default guestSchema;
+const Guest = mongoose.model('Guest', guestSchema)
+module.exports = Guest

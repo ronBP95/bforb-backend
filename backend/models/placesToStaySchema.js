@@ -8,4 +8,6 @@ const placesToStaySchema = new Schema({
     rating: Number
 })
 
-export default placesToStaySchema;
+
+const Places = mongoose.model('Places', placesToStaySchema)
+module.exports = Places

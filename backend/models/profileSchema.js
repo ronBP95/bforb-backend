@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 import guestSchema from './guestSchema'
 import hostSchema from './hostSchema'
 
-const userSchema = new Schema({
+const profileSchema = new Schema({
     name: String,
     userPhoto: String,
     locations: String,
@@ -17,9 +17,5 @@ const userSchema = new Schema({
     host: [hostSchema]
 })
 
-const placesToStaySchema = new Schema({
-    location: String,
-    bedPhoto: String,
-    description: String,
-    rating: Number
-})
+const Profile = mongoose.model('Profile', profileSchema)
+module.exports = Profile
