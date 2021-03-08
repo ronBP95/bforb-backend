@@ -11,4 +11,6 @@ const hostSchema = new Schema({
     comments: [commentsSchema]
 })
 
-export default hostSchema;
+
+const Host = mongoose.model('Host', hostSchema)
+module.exports = Host
