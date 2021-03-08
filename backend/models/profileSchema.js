@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const guestSchema = require('./guestSchema')
-const hostSchema = require('./hostSchema')
+const guestSchema = require('./guestSchema').schema
+const hostSchema = require('./hostSchema').schema
 
 const profileSchema = new Schema({
     name: String,
