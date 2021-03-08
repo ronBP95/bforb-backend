@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-const { Schema } = mongoose;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const placesToStaySchema = new Schema({
     location: String,

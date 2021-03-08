@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
-const { Schema } = mongoose;
-import guestSchema from './guestSchema'
-import hostSchema from './hostSchema'
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const guestSchema = require('./guestSchema')
+const hostSchema = require('./hostSchema')
 
 const profileSchema = new Schema({
     name: String,
