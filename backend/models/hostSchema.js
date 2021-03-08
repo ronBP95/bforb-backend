@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-import commentsSchema from './commentsSchema'
-const { Schema } = mongoose;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const commentsSchema = require('./commentsSchema')
 
 const hostSchema = new Schema({
     location: String,
