@@ -1,4 +1,4 @@
-const db = require('../models/commentsSchema');
+const db = require('../models/comments');
 
 const index = (req, res) => {
     db.find({}, (err, foundComments) => {

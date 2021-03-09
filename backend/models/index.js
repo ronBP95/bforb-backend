@@ -23,10 +23,10 @@ db.on('error', (error) => {
 });
 
 module.exports = {
-    User: require('./User'),
+    User: require('./user'),
     Guest: require('./guest'),
-    Host: require('./hostSchema'),
-    Places: require('./placesToStaySchema'),
-    Comments: require('./commentsSchema'),
-    Profile: require('./profileSchema')
+    Host: require('./host'),
+    Places: require('./placesToStay'),
+    Comments: require('./comments'),
+    Profile: require('./profile')
 }

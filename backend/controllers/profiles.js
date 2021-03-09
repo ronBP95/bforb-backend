@@ -1,4 +1,4 @@
-const db = require('../models/profileSchema');
+const db = require('../models/profile');
 
 const index = (req, res) => {
     db.find({}, (err, foundProfiles) => {

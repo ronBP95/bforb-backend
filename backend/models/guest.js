@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const commentsSchema = require('./commentsSchema').schema
+const commentsSchema = require('./comments').schema
 
 const guestSchema = new Schema({
     numberOfStays: Number,
