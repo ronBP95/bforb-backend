@@ -14,11 +14,36 @@ const show = (req, res) => {
     });
 };
 
+/**
+ * Create a comment that automatically pulls in writtenBy id and writtenAbout id.
+ * 
+ * Step 1: bring in the writtenBy ID (log)
+ * Step 2: bring in the writtenAbout ID (log)
+ * Step 3: use db.create to create a comment object that stores the ids.
+ * Step 4: Check conditional logic 
+ * 
+ */
+
 const create = (req, res) => {
-    db.create(req.body, (err, savedComments) => {
-        if (err) console.log('Error in games#create:', err);
-        res.json(savedComments)
-    });
+
+    console.log(Date.now())
+
+    const { _id } = req.user
+    const { comment, rating } = req.body
+
+    const newComment = new db ({
+        writtenBy: _id,
+        // Adjusted routes so that writtenAbout id would be stored in req.params -- have to
+        // consider how we want to set the params and adjust
+        writtenAbout: req.params,
+        comment, 
+        rating,
+        createAt: Date.now()
+    })
+
+    res.json(newComment)
+
+
 };
 
 const update = (req, res) => {
