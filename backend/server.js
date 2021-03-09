@@ -7,7 +7,11 @@ const port = process.env.PORT || 8000;
 const app = express();
 
 const users = require('./routes/api/users')
+<<<<<<< HEAD
 const { places, profiles } = require('./routes');
+=======
+const { places, comments } = require('./routes');
+>>>>>>> 064f6ea6ce2ba8b36fa6309f58771e1b1a8f3ecc
 
 // Middleware
 app.use(cors());
@@ -23,8 +27,13 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/users', users);
+<<<<<<< HEAD
 app.use('/places', places);
 app.use('/profiles', profiles);
+=======
+app.use('/places', places)
+app.use('/comments', comments)
+>>>>>>> 064f6ea6ce2ba8b36fa6309f58771e1b1a8f3ecc
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
