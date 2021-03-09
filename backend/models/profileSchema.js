@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const guestSchema = require('./guestSchema').schema
+const guestSchema = require('./guest').schema
 const hostSchema = require('./hostSchema').schema
 
 const profileSchema = new Schema({
@@ -14,12 +14,11 @@ const profileSchema = new Schema({
     memberSince: Date,
     isGuest: Boolean,
     isHost: Boolean,
-    guest: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Guest'},
+    guest: [guestSchema],
     host: {
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Host'} 
+        ref: 'Host'
+    } 
 })
 
 const Profile = mongoose.model('Profile', profileSchema)

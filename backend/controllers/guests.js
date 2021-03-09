@@ -1,4 +1,4 @@
-const db = require('../models/guestSchema');
+const Guest = require('../models/guest');
 const Profile = require('../models/profileSchema');
 
 const index = (req, res) => {
@@ -27,17 +27,17 @@ const create = async (req, res) => {
     const { numberOfStays, rating, wantsToMake } = req.body
 
 
-    const newGuestProfile = await new db ({ 
+    const newGuestProfile = await new Guest ({ 
         userId: _id,
         numberOfStays, 
         rating, 
         wantsToMake
     })
 
-    const userProfile = await Profile.findOneAndUpdate({ userId: _id },
-        {$set: {
-            guest: newGuestProfile
-        }})
+    const userProfile = await Profile.findOne({ userId: _id })
+
+    userProfile.guest.push(newGuestProfile)
+    userProfile.save()
 
     res.json(userProfile)
 };

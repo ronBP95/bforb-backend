@@ -24,7 +24,7 @@ db.on('error', (error) => {
 
 module.exports = {
     User: require('./User'),
-    Guest: require('./guestSchema'),
+    Guest: require('./guest'),
     Host: require('./hostSchema'),
     Places: require('./placesToStaySchema'),
     Comments: require('./commentsSchema'),
