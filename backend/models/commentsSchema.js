@@ -9,10 +9,10 @@ const commentsSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Profile'
     },
-    writtenAbout: [{
+    writtenAbout: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Profile'
-    }],
+    },
     comment: String
 })
 
