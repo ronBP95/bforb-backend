@@ -14,11 +14,28 @@ const show = (req, res) => {
     });
 };
 
+// embed the User id in the profile.
 const create = (req, res) => {
-    db.create(req.body, (err, savedProfiles) => {
-        if (err) console.log('Error in games#create:', err);
-        res.json(savedProfiles)
-    });
+
+    const { _id, name } = req.user
+    const { userPhoto, locations, aboutMe, whyTravel, favBreakfast, isGuest, isHost } = req.body
+
+    const newProfile = new db ({
+        userId: _id,
+        name,
+        userPhoto, // make sure that we are doing this correctly
+        locations, 
+        aboutMe,
+        whyTravel,
+        favBreakfast, 
+        memberSince: Date.now(),
+        isGuest, 
+        isHost
+    })
+
+    db.create(newProfile)
+
+    res.json(newProfile)
 };
 
 const update = (req, res) => {

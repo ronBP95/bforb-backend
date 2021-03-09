@@ -23,10 +23,7 @@ const show = (req, res) => {
  * Step 4: Check conditional logic 
  * 
  */
-
 const create = (req, res) => {
-
-    console.log(Date.now())
 
     const { _id } = req.user
     const { comment, rating } = req.body
