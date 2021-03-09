@@ -1,7 +1,14 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const guestSchema = require('./guestSchema').schema
-const hostSchema = require('./hostSchema').schema
+//const guestSchema = require('./guestSchema').schema
+const hostSchema = require('./host').schema
+
+const guestSchema = new Schema({
+    numberOfStays: Number,
+    rating: Number,
+    wantsToMake: String,
+    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comments'}]
+})
 
 const profileSchema = new Schema({
     userId: String, 
@@ -14,9 +21,7 @@ const profileSchema = new Schema({
     memberSince: Date,
     isGuest: Boolean,
     isHost: Boolean,
-    guest: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Guest'},
+    guest: [guestSchema],
     host: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Host'} 

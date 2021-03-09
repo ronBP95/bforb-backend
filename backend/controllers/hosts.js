@@ -1,4 +1,4 @@
-const db = require('../models/hostSchema');
+const db = require('../models/host');
 
 const index = (req, res) => {
     db.find({}, (err, foundPlaces) => {

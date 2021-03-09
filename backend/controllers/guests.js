@@ -1,5 +1,5 @@
-const db = require('../models/guestSchema');
-const Profile = require('../models/profileSchema');
+const db = require('../models/guest');
+const Profile = require('../models/profile');
 
 const index = (req, res) => {
     db.find({}, (err, foundPlaces) => {
