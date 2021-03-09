@@ -7,7 +7,7 @@ const port = process.env.PORT || 8000;
 const app = express();
 
 const users = require('./routes/api/users')
-const { places } = require('./routes');
+const { places, comments } = require('./routes');
 
 // Middleware
 app.use(cors());
@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/users', users);
 app.use('/places', places)
+app.use('/comments', comments)
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
