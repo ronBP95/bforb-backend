@@ -13,8 +13,8 @@ const profileSchema = new Schema({
     memberSince: Date,
     isGuest: Boolean,
     isHost: Boolean,
-    guest: [guestSchema],
-    host: [hostSchema]
+    guest: [{type: mongoose.Schema.Types.ObjectId, ref: 'Guest'}],
+    host: [{type: mongoose.Schema.Types.ObjectId, ref: 'Host'}] 
 })
 
 const Profile = mongoose.model('Profile', profileSchema)
