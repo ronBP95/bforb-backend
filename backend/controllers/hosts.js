@@ -14,6 +14,9 @@ const show = (req, res) => {
     });
 };
 
+
+
+
 const create = (req, res) => {
     db.create(req.body, (err, savedPlaces) => {
         if (err) console.log('Error in games#create:', err);
