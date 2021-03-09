@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const hostSchema = require('./host').schema
+const guestSchema = require('./guest').schema
 
 const guestSchema = new Schema({
     numberOfStays: Number,
@@ -21,10 +22,7 @@ const profileSchema = new Schema({
     isGuest: Boolean,
     isHost: Boolean,
     guest: [guestSchema],
-    host: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Host'
-    } 
+    host: [hostSchema]
 })
 
 const Profile = mongoose.model('Profile', profileSchema)
