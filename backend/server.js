@@ -8,6 +8,7 @@ const app = express();
 
 const users = require('./routes/api/users')
 const { places } = require('./routes');
+const { hosts } = require('./routes');
 
 // Middleware
 app.use(cors());
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/users', users);
+app.use('/hosts', hosts)
 app.use('/places', places)
 
 app.listen(port, () => {
