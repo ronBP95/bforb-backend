@@ -7,8 +7,7 @@ const port = process.env.PORT || 8000;
 const app = express();
 
 const users = require('./routes/api/users')
-const { places, profiles, comments  } = require('./routes');
-
+const { places, profiles, comments, hosts  } = require('./routes');
 
 // Middleware
 app.use(cors());
@@ -24,10 +23,11 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/users', users);
+app.use('/hosts', hosts);
 app.use('/places', places);
 app.use('/profiles', profiles);
-app.use('/places', places)
-app.use('/comments', comments)
+app.use('/places', places);
+app.use('/comments', comments);
 
 
 app.listen(port, () => {
