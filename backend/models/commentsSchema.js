@@ -7,11 +7,11 @@ const commentsSchema = new Schema({
     rating: Number,
     writtenBy: {
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Profile'
+        ref: 'User'
     },
     writtenAbout: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Profile'
+        ref: 'User'
     },
     comment: String
 })

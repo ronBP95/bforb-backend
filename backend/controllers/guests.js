@@ -1,4 +1,5 @@
 const db = require('../models/guestSchema');
+const Profile = require('../models/profileSchema');
 
 const index = (req, res) => {
     db.find({}, (err, foundPlaces) => {
@@ -14,11 +15,31 @@ const show = (req, res) => {
     });
 };
 
-const create = (req, res) => {
-    db.create(req.body, (err, savedPlaces) => {
-        if (err) console.log('Error in games#create:', err);
-        res.json(savedPlaces)
-    });
+/**
+ * Create guestProfile for user 
+ * User authenticated login in routes/index.js
+ * 
+ * TODO: Write logic for numberOfStays and Ratings
+ */
+const create = async (req, res) => {
+
+    const { _id } = req.user
+    const { numberOfStays, rating, wantsToMake } = req.body
+
+
+    const newGuestProfile = await new db ({ 
+        userId: _id,
+        numberOfStays, 
+        rating, 
+        wantsToMake
+    })
+
+    const userProfile = await Profile.findOneAndUpdate({ userId: _id },
+        {$set: {
+            guest: newGuestProfile
+        }})
+
+    res.json(userProfile)
 };
 
 const update = (req, res) => {
