@@ -21,6 +21,8 @@ const create = async (req, res) => {
     const myProfile = await Profile.findOne({ userId: _id })
     const { title, bedPhoto, description, rating } = req.body
 
+    console.log(myProfile.host[0].placesToStay)
+
     // Step 2: crew new placeToStay
     const newPlaceToStay = await new Place ({
         title,
@@ -31,6 +33,7 @@ const create = async (req, res) => {
 
     // Step 3: push to myProfile
     myProfile.host[0].placesToStay.push(newPlaceToStay)
+    myProfile.save()
 
     // Step 4: show it!
     res.json(myProfile)
