@@ -44,6 +44,13 @@ const show = (req, res) => {
     res.json(userProfile)
 };
 
+const update = (req, res) => {
+    db.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatePlaces) => {
+        if (err) console.log('Error in games#update:', err);
+        res.json(updatePlaces)
+    });
+};
+
 const destroy = (req, res) => {
     db.findByIdAndDelete(req.params.id, (err, deletedPlaces) => {
         if (err) {

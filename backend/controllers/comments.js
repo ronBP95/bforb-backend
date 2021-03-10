@@ -25,7 +25,7 @@ const show = (req, res) => {
  * Step 4: Check conditional logic 
  * 
  */
-const create = (req, res) => {
+const create = async (req, res) => {
 
     const { userId } = req.params
     const myId = req.user._id
