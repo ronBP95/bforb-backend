@@ -7,10 +7,6 @@ const commentsSchema = new Schema({
     createdAt: Date,
     rating: Number,
     author: String,
-    writtenAbout: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
     comment: String
 })
 
