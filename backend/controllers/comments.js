@@ -29,8 +29,7 @@ const show = (req, res) => {
 const create = async (req, res) => {
 
     const { id } = req.params
-    const myId = req.user._id
-    const { name } = req.user  
+    const myId = req.user._id 
     const { isGuest, rating, comment } = req.body
 
 
@@ -46,37 +45,21 @@ const create = async (req, res) => {
     const myProfile = await Profile.findOne({ userId: myId })
     const otherProfile = await Profile.findOne({ _id: id })
 
-    // test
-    // console.log(myProfile.host[0]) 
-    // my profile works, but the otherProfile does not
-    console.log(otherProfile.guest[0])
-    
-    
-    // Step 2: If I am the guest push to my guest and other's host else other
-    // if (isGuest) {
-    //     myProfile.guest[0].comment.push(userComment)
-    //     otherProfiel.host[0].comment.push(userComment)
-    // }
+    // step 2: push the userComment to the profiles if I am guest push to myGuest 
+    if (isGuest) { 
+        myProfile.guest[0].comments.push(userComment)
+        otherProfile.host[0].comments.push(userComment) 
+    } else {
+        myProfile.host[0].comments.push(userComment)
+        otherProfile.guest[0].comments.push(userComment)
+    }
 
-    // if (isGuest) {
-    //     const myProfile = await Profile.findOne({ userId: myId }) 
-    //     myProfile.guest[0].comments.push(userComment)
-    //     myProfile.save()
+    // Step 3: Save
+    myProfile.save()
+    otherProfile.save()
 
-    //     const otherProfile = await Profile.findOne({ id })
-    //     otherProfile.host[0].comments.push(userCommnet)
-    //     otherProfile.save()
-    // } else if (!isGuest) {
-    //     const myProfile = await Profile.findOne({ userId: myId }) 
-    //     myProfile.host[0].comments.push(userComment)
-    //     myProfile.save()
-
-    //     const otherProfile = await Profile.findOne({ id })
-    //     otherProfile.guest[0].comments.push(userCommnet)
-    //     otherProfile.save()
-    // }
-
-    // res.json(myProfile)
+    // Step 4: Send myProfile to JSON format in postman
+    res.json(myProfile)
 };
 
 const update = (req, res) => {

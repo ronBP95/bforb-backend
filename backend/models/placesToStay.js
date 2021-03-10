@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const placesToStaySchema = new Schema({
+    title: String, 
     location: String,
     bedPhoto: String,
     description: String,
