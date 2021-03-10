@@ -42,25 +42,41 @@ const create = async (req, res) => {
         writtenAbout: id
     })
 
-    if (isGuest) {
-        const myProfile = await Profile.findOne({ userId: myId }) 
-        myProfile.guest[0].comments.push(userComment)
-        myProfile.save()
+    // Step 1: Find myPorfile(myId) and otherProfile(id)
+    const myProfile = await Profile.findOne({ userId: myId })
+    const otherProfile = await Profile.findOne({ _id: id })
 
-        const otherProfile = await Profile.findOne({ id })
-        otherProfile.host[0].comments.push(userCommnet)
-        otherProfile.save()
-    } else if (!isGuest) {
-        const myProfile = await Profile.findOne({ userId: myId }) 
-        myProfile.host[0].comments.push(userComment)
-        myProfile.save()
+    // test
+    // console.log(myProfile.host[0]) 
+    // my profile works, but the otherProfile does not
+    console.log(otherProfile.guest[0])
+    
+    
+    // Step 2: If I am the guest push to my guest and other's host else other
+    // if (isGuest) {
+    //     myProfile.guest[0].comment.push(userComment)
+    //     otherProfiel.host[0].comment.push(userComment)
+    // }
 
-        const otherProfile = await Profile.findOne({ id })
-        otherProfile.guest[0].comments.push(userCommnet)
-        otherProfile.save()
-    }
+    // if (isGuest) {
+    //     const myProfile = await Profile.findOne({ userId: myId }) 
+    //     myProfile.guest[0].comments.push(userComment)
+    //     myProfile.save()
 
-    res.json(myProfile)
+    //     const otherProfile = await Profile.findOne({ id })
+    //     otherProfile.host[0].comments.push(userCommnet)
+    //     otherProfile.save()
+    // } else if (!isGuest) {
+    //     const myProfile = await Profile.findOne({ userId: myId }) 
+    //     myProfile.host[0].comments.push(userComment)
+    //     myProfile.save()
+
+    //     const otherProfile = await Profile.findOne({ id })
+    //     otherProfile.guest[0].comments.push(userCommnet)
+    //     otherProfile.save()
+    // }
+
+    // res.json(myProfile)
 };
 
 const update = (req, res) => {

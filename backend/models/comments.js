@@ -3,7 +3,6 @@ const Schema = mongoose.Schema
 
 const commentsSchema = new Schema({
     isGuest: Boolean,
-    isHost: Boolean,
     user: String,
     createdAt: Date,
     rating: Number,
