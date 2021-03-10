@@ -1,4 +1,4 @@
-const db = require('../models/host');
+const Host = require('../models/host');
 const Profile = require('../models/profile');
 
 const index = (req, res) => {
@@ -27,7 +27,7 @@ const create = async (req, res) => {
     const { location, numberOfGuests, rating, wantsForBreakfast } = req.body
 
 
-    const newHostProfile = await new Guest ({ 
+    const newHostProfile = await new Host ({ 
         location, 
         numberOfGuests,
         rating,

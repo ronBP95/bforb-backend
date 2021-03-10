@@ -1,4 +1,4 @@
-const db = require('../models/guest');
+const Guest = require('../models/guest');
 const Profile = require('../models/profile');
 
 
@@ -21,8 +21,9 @@ const show = (req, res) => {
  * User authenticated login in routes/index.js
  * 
  * TODO: Write logic for numberOfStays and Ratings
+ * TODO: Add logic to numberOfStays
  */
-const create = async (req, res) => {
+ const create = async (req, res) => {
 
     const { _id } = req.user
     const { numberOfStays, rating, wantsToMake } = req.body
@@ -41,13 +42,6 @@ const create = async (req, res) => {
     userProfile.save()
 
     res.json(userProfile)
-};
-
-const update = (req, res) => {
-    db.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatePlaces) => {
-        if (err) console.log('Error in games#update:', err);
-        res.json(updatePlaces)
-    });
 };
 
 const destroy = (req, res) => {

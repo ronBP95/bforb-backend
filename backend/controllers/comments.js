@@ -1,4 +1,6 @@
-const db = require('../models/comments');
+const Comment = require('../models/comments');
+const Guest = require('../models/guest');
+const Host = require('../models/host');
 
 const index = (req, res) => {
     db.find({}, (err, foundComments) => {
@@ -25,22 +27,33 @@ const show = (req, res) => {
  */
 const create = (req, res) => {
 
-    const { _id } = req.user
-    const { comment, rating } = req.body
+    const { userId } = req.params
+    const myId = req.user._id
+    const { name } = req.user  
+    const { isGuest, isHost, rating, comment } = req.body
 
-    const newComment = new db ({
-        writtenBy: _id,
-        // Adjusted routes so that writtenAbout id would be stored in req.params -- have to
-        // consider how we want to set the params and adjust
-        writtenAbout: req.params,
-        comment, 
+
+    const userComment = await new Comment ({ 
+        isGuest,
+        isHost, 
+        author: name,  
         rating,
-        createAt: Date.now()
+        comment,
+        writtenAbout: userId
     })
 
-    res.json(newComment)
+    let db = isGuest ? Guest : Host 
+    const myProfile = await db.findOne({ userId: myId })
+    myProfile.comment.push(userComment)
+    myProfile.save()
+    
+    const bd = !isGuest ? Guest : Host 
+    const otherProfile = await bd.findOne({ userId })
+    otherProfile.comment.push(userComment)
+    otherProfile.save()
 
-
+    console.log(otherProfile)
+    res.json(myProfile)
 };
 
 const update = (req, res) => {
