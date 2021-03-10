@@ -1,4 +1,5 @@
-const db = require('../models/placesToStay');
+const Place = require('../models/placesToStay');
+const Profile = require('../models/profile');
 
 const index = (req, res) => {
     db.find({}, (err, foundPlaces) => {
@@ -14,11 +15,28 @@ const show = (req, res) => {
     });
 };
 
-const create = (req, res) => {
-    db.create(req.body, (err, savedPlaces) => {
-        if (err) console.log('Error in games#create:', err);
-        res.json(savedPlaces)
-    });
+const create = async (req, res) => {
+    // Step 1: gather userId from req.user and find profile and gather body vars
+    const { _id } = req.user 
+    const myProfile = await Profile.findOne({ userId: _id })
+    const { title, bedPhoto, description, rating } = req.body
+
+    console.log(myProfile.host[0].placesToStay)
+
+    // Step 2: crew new placeToStay
+    const newPlaceToStay = await new Place ({
+        title,
+        bedPhoto,
+        description,
+        rating
+    })
+
+    // Step 3: push to myProfile
+    myProfile.host[0].placesToStay.push(newPlaceToStay)
+    myProfile.save()
+
+    // Step 4: show it!
+    res.json(myProfile)
 };
 
 const update = (req, res) => {

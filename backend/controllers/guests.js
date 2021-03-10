@@ -1,4 +1,4 @@
-const db = require('../models/guest');
+const Guest = require('../models/guest');
 const Profile = require('../models/profile');
 
 
@@ -21,8 +21,9 @@ const show = (req, res) => {
  * User authenticated login in routes/index.js
  * 
  * TODO: Write logic for numberOfStays and Ratings
+ * TODO: Add logic to numberOfStays
  */
-const create = async (req, res) => {
+ const create = async (req, res) => {
 
     const { _id } = req.user
     const { numberOfStays, rating, wantsToMake } = req.body
