@@ -6,7 +6,7 @@ const guestSchema = new Schema({
     numberOfStays: Number,
     rating: Number,
     wantsToMake: String,
-    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comments'}]
+    comments: [commentsSchema]
 })
 
 const Guest = mongoose.model('Guest', guestSchema)

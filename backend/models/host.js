@@ -9,7 +9,7 @@ const hostSchema = new Schema({
     rating: Number,
     placeOffered: [{type: mongoose.Schema.Types.ObjectId, ref: 'Places'}],
     wantsForBreakfast: String,
-    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comments'}]
+    comments: [commentsSchema]
 })
 
 

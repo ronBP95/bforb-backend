@@ -1,6 +1,7 @@
 const Comment = require('../models/comments');
-const Guest = require('../models/guest');
-const Host = require('../models/host');
+// const Guest = require('../models/guest');
+// const Host = require('../models/host');
+const Profile = require('../models/profile');
 
 const index = (req, res) => {
     db.find({}, (err, foundComments) => {
@@ -27,32 +28,38 @@ const show = (req, res) => {
  */
 const create = async (req, res) => {
 
-    const { userId } = req.params
+    const { id } = req.params
     const myId = req.user._id
     const { name } = req.user  
-    const { isGuest, isHost, rating, comment } = req.body
+    const { isGuest, rating, comment } = req.body
 
 
     const userComment = await new Comment ({ 
-        isGuest,
-        isHost, 
-        author: name,  
+        isGuest, 
+        author: myId,  
         rating,
         comment,
-        writtenAbout: userId
+        writtenAbout: id
     })
 
-    let db = isGuest ? Guest : Host 
-    const myProfile = await db.findOne({ userId: myId })
-    myProfile.comment.push(userComment)
-    myProfile.save()
-    
-    const bd = !isGuest ? Guest : Host 
-    const otherProfile = await bd.findOne({ userId })
-    otherProfile.comment.push(userComment)
-    otherProfile.save()
+    if (isGuest) {
+        const myProfile = await Profile.findOne({ userId: myId }) 
+        myProfile.guest[0].comments.push(userComment)
+        myProfile.save()
 
-    console.log(otherProfile)
+        const otherProfile = await Profile.findOne({ id })
+        otherProfile.host[0].comments.push(userCommnet)
+        otherProfile.save()
+    } else if (!isGuest) {
+        const myProfile = await Profile.findOne({ userId: myId }) 
+        myProfile.host[0].comments.push(userComment)
+        myProfile.save()
+
+        const otherProfile = await Profile.findOne({ id })
+        otherProfile.guest[0].comments.push(userCommnet)
+        otherProfile.save()
+    }
+
     res.json(myProfile)
 };
 
