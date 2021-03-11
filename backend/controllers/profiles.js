@@ -39,6 +39,7 @@ const create = (req, res) => {
 };
 
 const update = (req, res) => {
+
     db.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updateProfiles) => {
         if (err) console.log('Error in games#update:', err);
         res.json(updateProfiles)
