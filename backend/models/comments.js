@@ -7,6 +7,7 @@ const commentsSchema = new Schema({
     createdAt: Date,
     rating: Number,
     author: String,
+    writtenAbout: String, 
     comment: String
 })
 

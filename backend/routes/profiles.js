@@ -10,6 +10,7 @@ router.get('/', ctrl.profiles.index)
 // router.put('/:id', ctrl.profiles.update);
 // router.delete('/:id', ctrl.profiles.destroy);
 router.post('/', passport.authenticate('jwt', { session: false }), ctrl.profiles.create)
+router.put('/:id', passport.authenticate('jwt', { session: false }), ctrl.profiles.update)
 
 // exports
 module.exports = router;

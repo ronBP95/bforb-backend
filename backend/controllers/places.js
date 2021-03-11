@@ -2,14 +2,14 @@ const Place = require('../models/placesToStay');
 const Profile = require('../models/profile');
 
 const index = (req, res) => {
-    db.find({}, (err, foundPlaces) => {
+    Profile.find({}, (err, foundPlaces) => {
         if (err) console.log(err)
         res.json(foundPlaces)
     });
 }
 
 const show = (req, res) => {
-    db.findById(req.params.id, (err, foundPlaces) => {
+    Profile.findById(req.params.id, (err, foundPlaces) => {
         if (err) console.log('Error in games#show:', err);
         res.json(foundPlaces);
     });
@@ -39,11 +39,19 @@ const create = async (req, res) => {
     res.json(myProfile)
 };
 
-const update = (req, res) => {
-    db.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatePlaces) => {
-        if (err) console.log('Error in games#update:', err);
-        res.json(updatePlaces)
-    });
+const update = async (req, res) => {
+    // Step 1: Drill down to the guest section in the profile.
+    const userId = req.params.id
+    const place = req.params.placeNum
+    const myPlaceProfile = await Profile.findOne({ userId })
+    const { title, bedPhoto, description } = req.body
+
+    // Step 2: update, save, send
+    myPlaceProfile.host[0].placesToStay[place].title = title
+    myPlaceProfile.host[0].placesToStay[place].bedPhoto = bedPhoto
+    myPlaceProfile.host[0].placesToStay[place].description = description
+    myPlaceProfile.save()
+    res.json(myPlaceProfile.host[0].placesToStay[place])
 };
 
 const destroy = (req, res) => {
