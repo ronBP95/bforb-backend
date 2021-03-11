@@ -39,11 +39,21 @@ const create = async (req, res) => {
     res.json(myProfile)
 };
 
-const update = (req, res) => {
-    db.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatePlaces) => {
-        if (err) console.log('Error in games#update:', err);
-        res.json(updatePlaces)
-    });
+const update = async (req, res) => {
+    // Step 1: Drill down to the guest section in the profile.
+    const userId = req.params.id
+    const place = req.params.placeNum
+    const myPlaceProfile = await Profile.findOne({ userId })
+    const { title, bedPhoto, description } = req.body
+
+    console.log(myPlaceProfile.host[0].placesToStay[place])
+
+    // Step 2: update, save, send
+    myPlaceProfile.host[0].placesToStay[place].title = title
+    myPlaceProfile.host[0].placesToStay[place].bedPhoto = bedPhoto
+    myPlaceProfile.host[0].placesToStay[place].description = description
+    myPlaceProfile.save()
+    res.json(myPlaceProfile.host[0].placesToStay[place])
 };
 
 const destroy = (req, res) => {
