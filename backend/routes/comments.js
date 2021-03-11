@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken')
 router.get('/', ctrl.index)
 router.get('/:id', ctrl.show);
 router.post('/:id', passport.authenticate('jwt', { session: false }), ctrl.create);
-router.put('/:id', ctrl.update);
+router.put('/:idx', passport.authenticate('jwt', { session: false }), ctrl.update);
 router.delete('/:id', ctrl.destroy);
 
 // exports

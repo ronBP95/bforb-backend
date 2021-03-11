@@ -46,8 +46,6 @@ const update = async (req, res) => {
     const myPlaceProfile = await Profile.findOne({ userId })
     const { title, bedPhoto, description } = req.body
 
-    console.log(myPlaceProfile.host[0].placesToStay[place])
-
     // Step 2: update, save, send
     myPlaceProfile.host[0].placesToStay[place].title = title
     myPlaceProfile.host[0].placesToStay[place].bedPhoto = bedPhoto

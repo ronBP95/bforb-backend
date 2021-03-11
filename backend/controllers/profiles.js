@@ -29,21 +29,21 @@ const create = (req, res) => {
         whyTravel,
         favBreakfast, 
         memberSince: Date.now(),
-        isGuest, 
+        isGuest,
         isHost
     })
 
     db.create(newProfile)
-
     res.json(newProfile)
 };
 
-const update = (req, res) => {
+const update = async (req, res) => {
 
     db.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updateProfiles) => {
         if (err) console.log('Error in games#update:', err);
         res.json(updateProfiles)
     });
+
 };
 
 const destroy = (req, res) => {

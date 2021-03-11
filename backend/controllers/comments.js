@@ -62,11 +62,46 @@ const create = async (req, res) => {
     res.json(myProfile)
 };
 
-const update = (req, res) => {
-    db.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updateComments) => {
-        if (err) console.log('Error in games#update:', err);
-        res.json(updateComments)
-    });
+const update = async (req, res) => {
+    
+    // Step 1: find my profile
+    const myId = req.user._id
+    const commentIdx = req.params.idx
+    const myProfile = await Profile.findOne({ userId: myId })
+
+    const { isGuest, rating, comment } = req.body
+    let myComment = ''
+    let otherComment = ''
+    let otherProfile = ''
+
+    if (isGuest) {
+        myComment = myProfile.guest[0].comments[commentIdx]
+        const myCommentText = myProfile.guest[0].comments[commentIdx].comment
+
+        const writtenAbout = myProfile.guest[0].comments[commentIdx].writtenAbout
+        otherProfile = await Profile.findOne({ _id: writtenAbout })
+        const otherCommentArray = otherProfile.host[0].comments
+        otherComment = otherCommentArray.find( ({ comment }) => comment === myCommentText )
+    } else {
+        myComment = myProfile.host[0].comments[commentIdx]
+        const myCommentText = myProfile.host[0].comments[commentIdx].comment
+
+        const writtenAbout = myProfile.host[0].comments[commentIdx].writtenAbout
+        otherProfile = await Profile.findOne({ _id: writtenAbout })
+        const otherCommentArray = otherProfile.guest[0].comments
+        otherComment = otherCommentArray.find( ({ comment }) => comment === myCommentText )
+    }
+
+    myComment.rating = rating
+    myComment.comment = comment
+
+    otherComment.rating = rating
+    otherComment.comment = comment
+
+    myProfile.save()
+    otherProfile.save()
+
+    res.json(myProfile)
 };
 
 const destroy = (req, res) => {
