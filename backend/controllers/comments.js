@@ -65,6 +65,7 @@ const create = async (req, res) => {
 
     otherProfile.ratingTotal = otherProfile.ratingTotal + rating
     otherProfile.commentTotal = otherProfile.commentTotal + 1
+    otherProfile.rating = otherProfile.rating / otherProfile.commentTotal
 
     // step 2: push the userComment to the profiles if I am guest push to myGuest 
     if (isGuest) { 
@@ -83,6 +84,11 @@ const create = async (req, res) => {
     res.json(myProfile)
 };
 
+/**
+ * Goal: Update the other profiles total rating
+ *      Step 1: Subract the previous rating from the totalRating
+ *      Step 2: Add the new rating back to total rating.
+ */
 const update = async (req, res) => {
     
     const myId = req.user._id
@@ -115,8 +121,14 @@ const update = async (req, res) => {
     myComment.rating = rating
     myComment.comment = comment
 
+    // Update the ratingTotal
+    otherProfile.ratingTotal = otherProfile.ratingTotal - otherComment.rating
     otherComment.rating = rating
+    otherProfile.ratingTotal = otherProfile.ratingTotal + otherComment.rating
+    otherProfile.rating = otherProfile.ratingTotal / otherProfile.rating
     otherComment.comment = comment
+
+
 
     myProfile.save()
     otherProfile.save()

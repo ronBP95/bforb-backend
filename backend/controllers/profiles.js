@@ -72,7 +72,7 @@ const create = (req, res) => {
         favBreakfast, 
         memberSince: Date.now(),
         ratingTotal: 5,
-        commentTotal: 0,
+        commentTotal: 1,
         rating: 5,
         isGuest,
         isHost
