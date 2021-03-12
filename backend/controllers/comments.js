@@ -29,13 +29,13 @@ const show = (req, res) => {
 const create = async (req, res) => {
 
     const { id } = req.params
-    const myId = req.user._id 
+    const myName = req.user.name
     const { isGuest, rating, comment } = req.body
 
 
     const userComment = await new Comment ({ 
         isGuest, 
-        author: myId,  
+        author: myName,  
         rating,
         comment,
         writtenAbout: id
@@ -64,7 +64,6 @@ const create = async (req, res) => {
 
 const update = async (req, res) => {
     
-    // Step 1: find my profile
     const myId = req.user._id
     const commentIdx = req.params.idx
     const myProfile = await Profile.findOne({ userId: myId })
