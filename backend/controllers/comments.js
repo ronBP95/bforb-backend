@@ -130,8 +130,6 @@ const update = async (req, res) => {
     otherProfile.rating = Number(otherProfile.ratingTotal) / Number(otherProfile.commentTotal)
     otherComment.comment = comment
 
-
-
     myProfile.save()
     otherProfile.save()
 
@@ -153,17 +151,41 @@ const destroy = async (req, res) => {
     // Get ids for my profile and myComment that I want to delete
     const myId = req.user._id
     const commentId = req.params.id
+    let isGuest = req.params.isGuest
+    if (isGuest === 'true') { isGuest = true }
+    if (isGuest === 'false') { isGuest = false }
 
-    // find my profile and my commentToDelete
     const myProfile = await Profile.findOne({ userId: myId })
-    const commentToDelete = myProfile.host[0].comments.find( ({ _id }) => String(_id) === commentId )
-    
-    const writtenAbout = commentToDelete.writtenAbout
-    const otherProfile =  await Profile.findOne({ _id: writtenAbout })
-    const otherCommentToDelete = otherProfile.guest[0].comments.find( ({ _id }) => String(_id) === commentId )
+    let otherProfile = {}
 
-    console.log(otherCommentToDelete)
-    console.log(commentToDelete)
+    // if isGuest
+    if(isGuest){
+        // find my profile and my commentToDelete
+        const commentToDelete = myProfile.guest[0].comments.find( ({ _id }) => String(_id) === commentId )
+        commentToDelete.comment = 'DELETED'
+        
+        // find the comment on the other persons profile
+        const writtenAbout = commentToDelete.writtenAbout
+        otherProfile =  await Profile.findOne({ _id: writtenAbout })
+        const otherCommentToDelete = otherProfile.host[0].comments.find( ({ _id }) => String(_id) === commentId )
+        otherCommentToDelete.comment = 'DELETED'
+    } else {
+        // find my profile and my commentToDelete
+        const commentToDelete = myProfile.host[0].comments.find( ({ _id }) => String(_id) === commentId )
+        commentToDelete.comment = 'DELETED'
+        
+        // find the comment on the other persons profile
+        const writtenAbout = commentToDelete.writtenAbout
+        otherProfile =  await Profile.findOne({ _id: writtenAbout })
+        const otherCommentToDelete = otherProfile.guest[0].comments.find( ({ _id }) => String(_id) === commentId )
+        otherCommentToDelete.comment = 'DELETED'
+    }
+
+    myProfile.save()
+    otherProfile.save()
+
+    res.json(otherProfile)
+
 };
 
 module.exports = {
