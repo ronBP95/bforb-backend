@@ -125,7 +125,7 @@ const update = async (req, res) => {
     otherProfile.ratingTotal = otherProfile.ratingTotal - otherComment.rating
     otherComment.rating = rating
     otherProfile.ratingTotal = otherProfile.ratingTotal + otherComment.rating
-    otherProfile.rating = otherProfile.ratingTotal / otherProfile.rating
+    otherProfile.rating = otherProfile.ratingTotal / otherProfile.commentTotal
     otherComment.comment = comment
 
 
