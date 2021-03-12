@@ -70,9 +70,6 @@ const destroy = async (req, res) => {
     // let otherProfile = ''
     // let otherComment = ''
 
-
-
-
     // // in the guestComments section of myProfile
     // for(let i = 0; i < guestComments.length; i++){
     //     const author = guestComments[i]
@@ -113,15 +110,11 @@ const destroy = async (req, res) => {
     // otherProfile.save()
     // console.log(otherProfile.host[0].comments)
 
-
-
     // // console.log(otherProfile)
 
     const myProfile = await db.findOne({ userId: req.user._id })
     const id = myProfile._id
 
-
-    
     db.findByIdAndDelete(id, (err, deletedProfiles) => {
         if (err) {
             console.log('Error in games#destroy:', err);
