@@ -29,7 +29,7 @@ const showNonAuth = (req, res) => {
     db.find({}, (err, foundProfiles) => {
         if (err) console.log(err)
         foundProfiles.map((i) => {
-            const { _id, userId, name, userPhoto, locations, aboutMe, whyTravel, favBreakfast, memberSince, isGuest, isHost } = i
+            const { _id, userId, name, userPhoto, locations, aboutMe, whyTravel, favBreakfast, memberSince, rating, isGuest, isHost } = i
 
             nonAuthProfiles.push({
                 _id,
@@ -40,7 +40,8 @@ const showNonAuth = (req, res) => {
                 aboutMe, 
                 whyTravel, 
                 favBreakfast,
-                memberSince, 
+                memberSince,
+                rating, 
                 isGuest,
                 isHost,
             })
@@ -71,9 +72,9 @@ const create = (req, res) => {
         whyTravel,
         favBreakfast, 
         memberSince: Date.now(),
+        rating: 5,
         ratingTotal: 5,
         commentTotal: 1,
-        rating: 5,
         isGuest,
         isHost
     })
@@ -84,7 +85,10 @@ const create = (req, res) => {
 
 const update = async (req, res) => {
 
-    db.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updateProfiles) => {
+    const myProfile = await db.findOne({ userId: req.user._id })
+    const id = myProfile._id
+
+    db.findByIdAndUpdate(id, req.body, { new: true }, (err, updateProfiles) => {
         if (err) console.log('Error in games#update:', err);
         res.json(updateProfiles)
     });

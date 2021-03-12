@@ -47,6 +47,7 @@ const show = (req, res) => {
 const create = async (req, res) => {
 
     const { id } = req.params
+    const myId = req.user._id
     const myName = req.user.name
     const { isGuest, rating, comment } = req.body
 
@@ -63,9 +64,10 @@ const create = async (req, res) => {
     const myProfile = await Profile.findOne({ userId: myId })
     const otherProfile = await Profile.findOne({ _id: id })
 
-    otherProfile.ratingTotal = otherProfile.ratingTotal + rating
-    otherProfile.commentTotal = otherProfile.commentTotal + 1
-    otherProfile.rating = otherProfile.rating / otherProfile.commentTotal
+    otherProfile.ratingTotal = Number(otherProfile.ratingTotal) + Number(rating)
+    otherProfile.commentTotal = Number(otherProfile.commentTotal) + 1
+    otherProfile.rating = Number(otherProfile.ratingTotal) / Number(otherProfile.commentTotal)
+
 
     // step 2: push the userComment to the profiles if I am guest push to myGuest 
     if (isGuest) { 
@@ -81,7 +83,7 @@ const create = async (req, res) => {
     otherProfile.save()
 
     // Step 4: Send myProfile to JSON format in postman
-    res.json(myProfile)
+    res.json(otherProfile)
 };
 
 /**
@@ -122,10 +124,10 @@ const update = async (req, res) => {
     myComment.comment = comment
 
     // Update the ratingTotal
-    otherProfile.ratingTotal = otherProfile.ratingTotal - otherComment.rating
+    otherProfile.ratingTotal = Number(otherProfile.ratingTotal) - Number(otherComment.rating)
     otherComment.rating = rating
-    otherProfile.ratingTotal = otherProfile.ratingTotal + otherComment.rating
-    otherProfile.rating = otherProfile.ratingTotal / otherProfile.commentTotal
+    otherProfile.ratingTotal = Number(otherProfile.ratingTotal) + Number(otherComment.rating)
+    otherProfile.rating = Number(otherProfile.ratingTotal) / Number(otherProfile.commentTotal)
     otherComment.comment = comment
 
 
@@ -136,14 +138,32 @@ const update = async (req, res) => {
     res.json(myProfile)
 };
 
-const destroy = (req, res) => {
-    db.findByIdAndDelete(req.params.id, (err, deletedComments) => {
-        if (err) {
-            console.log('Error in games#destroy:', err);
-        } else {
-            res.json(deletedComments)
-        }
-    });
+/**
+ * 
+ * @param {*} req.params === CommentId 
+ * @param {*} res 
+ * 
+ *  * Goal: Destroy a single comment in the comments array
+ * 
+ * Step 1: Find my profile
+ * Step 2: find comment ID by params
+ */
+
+const destroy = async (req, res) => {
+    // Get ids for my profile and myComment that I want to delete
+    const myId = req.user._id
+    const commentId = req.params.id
+
+    // find my profile and my commentToDelete
+    const myProfile = await Profile.findOne({ userId: myId })
+    const commentToDelete = myProfile.host[0].comments.find( ({ _id }) => String(_id) === commentId )
+    
+    const writtenAbout = commentToDelete.writtenAbout
+    const otherProfile =  await Profile.findOne({ _id: writtenAbout })
+    const otherCommentToDelete = otherProfile.guest[0].comments.find( ({ _id }) => String(_id) === commentId )
+
+    console.log(otherCommentToDelete)
+    console.log(commentToDelete)
 };
 
 module.exports = {

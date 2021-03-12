@@ -12,9 +12,9 @@ const profileSchema = new Schema({
     whyTravel: String,
     favBreakfast: String,
     memberSince: Date,
+    rating: Number,
     ratingTotal: Number, // hide field in front end
-    commentTotal: Number, // hid field in front end
-    raiting: Number,
+    commentTotal: Number, // hide field in front end
     isGuest: Boolean,
     isHost: Boolean,
     guest: [guestSchema],
