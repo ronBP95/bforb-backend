@@ -24,13 +24,12 @@ const show = (req, res) => {
 const create = async (req, res) => {
 
     const { _id } = req.user
-    const { location, numberOfGuests, rating, wantsForBreakfast } = req.body
+    const { location, numberOfGuests, wantsForBreakfast } = req.body
 
 
     const newHostProfile = await new Host ({ 
         location, 
         numberOfGuests,
-        rating,
         wantsForBreakfast
     })
 

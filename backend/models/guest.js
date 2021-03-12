@@ -4,7 +4,6 @@ const commentsSchema = require('./comments').schema
 
 const guestSchema = new Schema({
     numberOfStays: Number,
-    rating: Number,
     wantsToMake: String,
     comments: [commentsSchema]
 })

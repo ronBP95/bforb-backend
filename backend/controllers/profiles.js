@@ -1,12 +1,9 @@
-
 const db = require('../models/profile');
 const Comments = require('./comments')
 
 /**
- * In order to get MVP I am creating a show all route b/c we won't have more than 10 people in the DB
- * However, if this were for an application that could be used by others, I would work closely with the front-end
- * team and mimic their component structure to ensure we are optimizing the best number of calls to db against
- * the time complexity of sending data to front.
+ * Keep the index route and update to authenticated route, so that only that information can be displayed
+ * to authenticated users
  * */
 const index = (req, res) => {
     db.find({}, (err, foundComments) => {
@@ -68,12 +65,15 @@ const create = (req, res) => {
     const newProfile = new db ({
         userId: _id,
         name,
-        userPhoto, // make sure that we are doing this correctly
+        userPhoto, 
         locations, 
         aboutMe,
         whyTravel,
         favBreakfast, 
         memberSince: Date.now(),
+        ratingTotal: 5,
+        commentTotal: 0,
+        rating: 5,
         isGuest,
         isHost
     })

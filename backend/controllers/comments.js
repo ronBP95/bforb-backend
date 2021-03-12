@@ -3,7 +3,14 @@ const Comment = require('../models/comments');
 // const Host = require('../models/host');
 const Profile = require('../models/profile');
 
-const index = (req, res) => {
+/**
+ * because our db relates to the user profile I removed the show and index methods and routes
+ * 
+ * I don't think that we have a use case where this is necessary.  Keeping commented out so that
+ * I can turn them on when needed.
+ */
+/** 
+ * const index = (req, res) => {
     db.find({}, (err, foundComments) => {
         if (err) console.log(err)
         res.json(foundComments)
@@ -16,6 +23,7 @@ const show = (req, res) => {
         res.json(foundComments);
     });
 };
+*/
 
 /**
  * Create a comment that automatically pulls in writtenBy id and writtenAbout id.
@@ -24,6 +32,16 @@ const show = (req, res) => {
  * Step 2: bring in the writtenAbout ID (log)
  * Step 3: use db.create to create a comment object that stores the ids.
  * Step 4: Check conditional logic 
+ * 
+ * Only guests or hosts can leave comments and ratings but not host.
+ * There is a radio on the form that ask if the commenter is a guest or host and returns a bool
+ * 
+ * Rating:
+ *      Update the profile rating in total
+ *      Average rating is total rating / number of comments
+ *      When comment is created update total rating in profile and then display rating is totalRating / comments.length
+ * 
+ *      Comment should only update the rating total and possibly total comments
  * 
  */
 const create = async (req, res) => {
@@ -44,6 +62,9 @@ const create = async (req, res) => {
     // Step 1: Find myPorfile(myId) and otherProfile(id)
     const myProfile = await Profile.findOne({ userId: myId })
     const otherProfile = await Profile.findOne({ _id: id })
+
+    otherProfile.ratingTotal = otherProfile.ratingTotal + rating
+    otherProfile.commentTotal = otherProfile.commentTotal + 1
 
     // step 2: push the userComment to the profiles if I am guest push to myGuest 
     if (isGuest) { 
@@ -114,8 +135,8 @@ const destroy = (req, res) => {
 };
 
 module.exports = {
-    index,
-    show,
+    // index,
+    // show,
     create,
     update,
     destroy,

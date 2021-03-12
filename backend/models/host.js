@@ -6,7 +6,6 @@ const placesToStaySchema = require('./placesToStay').schema
 const hostSchema = new Schema({
     location: String,
     numberOfGuests: Number,
-    rating: Number,
     wantsForBreakfast: String,
     placesToStay: [placesToStaySchema],
     comments: [commentsSchema]
