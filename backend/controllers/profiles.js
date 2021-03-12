@@ -8,31 +8,12 @@ const Comments = require('./comments')
  * team and mimic their component structure to ensure we are optimizing the best number of calls to db against
  * the time complexity of sending data to front.
  * */
-// const index = (req, res) => {
-//     let nonAuthProfiles = []
-
-//     db.find({}, (err, foundProfiles) => {
-//         if (err) console.log(err)
-//         foundProfiles.map((i) => {
-//             const { _id, userId, name, userPhoto, locations, aboutMe, whyTravel, favBreakfast, memberSince, isGuest, isHost } = i
-
-//             nonAuthProfiles.push({
-//                 _id,
-//                 userId, 
-//                 name, 
-//                 userPhoto,
-//                 locations, 
-//                 aboutMe, 
-//                 whyTravel, 
-//                 favBreakfast,
-//                 memberSince, 
-//                 isGuest,
-//                 isHost,
-//             })
-//         })
-//         res.json(nonAuthProfiles)
-//     });
-// };
+const index = (req, res) => {
+    db.find({}, (err, foundComments) => {
+        if (err) console.log(err)
+        res.json(foundComments)
+    });
+};
 
 /**
  * Goal: Non-Authenticated view and authenticated view.
@@ -181,7 +162,7 @@ const destroy = async (req, res) => {
 };
 
 module.exports = {
-    // index,
+    index,
     showNonAuth,
     show,
     create,
