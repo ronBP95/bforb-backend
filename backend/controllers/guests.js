@@ -26,13 +26,12 @@ const show = (req, res) => {
  const create = async (req, res) => {
 
     const { _id } = req.user
-    const { numberOfStays, rating, wantsToMake } = req.body
+    const { numberOfStays, wantsToMake } = req.body
 
 
     const newGuestProfile = await new Guest ({ 
         userId: _id,
         numberOfStays, 
-        rating, 
         wantsToMake
     })
 

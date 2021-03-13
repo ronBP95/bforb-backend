@@ -1,19 +1,54 @@
-const Profile = require('../models/profile');
 const db = require('../models/profile');
 const Comments = require('./comments')
 
 /**
- * In order to get MVP I am creating a show all route b/c we won't have more than 10 people in the DB
- * However, if this were for an application that could be used by others, I would work closely with the front-end
- * team and mimic their component structure to ensure we are optimizing the best number of calls to db against
- * the time complexity of sending data to front.
+ * Keep the index route and update to authenticated route, so that only that information can be displayed
+ * to authenticated users
  * */
 const index = (req, res) => {
-    db.find({}, (err, foundProfiles) => {
+    db.find({}, (err, foundComments) => {
         if (err) console.log(err)
-        res.json(foundProfiles)
+        res.json(foundComments)
     });
 };
+
+/**
+ * Goal: Non-Authenticated view and authenticated view.
+ * 
+ * Front end will queery the database and send this to the front end. 
+ * 
+ * Because we are doing this for a class project we decided to by-pass some validations
+ * IE we are just going to send all data to the front-end because we don't have a lot of users and
+ * wont have to worry about time complexity.
+ * 
+ * name, userPhotos, locations, aboutMe, whyTravel, favBreakfrast, memberSince, isGuest, isHost,
+ */
+const showNonAuth = (req, res) => {
+    let nonAuthProfiles = []
+
+    db.find({}, (err, foundProfiles) => {
+        if (err) console.log(err)
+        foundProfiles.map((i) => {
+            const { _id, userId, name, userPhoto, locations, aboutMe, whyTravel, favBreakfast, memberSince, rating, isGuest, isHost } = i
+
+            nonAuthProfiles.push({
+                _id,
+                userId, 
+                name, 
+                userPhoto,
+                locations, 
+                aboutMe, 
+                whyTravel, 
+                favBreakfast,
+                memberSince,
+                rating, 
+                isGuest,
+                isHost,
+            })
+        })
+        res.json(nonAuthProfiles)
+    });
+}
 
 const show = (req, res) => {
     db.findById(req.params.id, (err, foundComments) => {
@@ -31,12 +66,15 @@ const create = (req, res) => {
     const newProfile = new db ({
         userId: _id,
         name,
-        userPhoto, // make sure that we are doing this correctly
+        userPhoto, 
         locations, 
         aboutMe,
         whyTravel,
         favBreakfast, 
         memberSince: Date.now(),
+        rating: 5,
+        ratingTotal: 5,
+        commentTotal: 1,
         isGuest,
         isHost
     })
@@ -47,7 +85,10 @@ const create = (req, res) => {
 
 const update = async (req, res) => {
 
-    db.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updateProfiles) => {
+    const myProfile = await db.findOne({ userId: req.user._id })
+    const id = myProfile._id
+
+    db.findByIdAndUpdate(id, req.body, { new: true }, (err, updateProfiles) => {
         if (err) console.log('Error in games#update:', err);
         res.json(updateProfiles)
     });
@@ -126,6 +167,7 @@ const destroy = async (req, res) => {
 
 module.exports = {
     index,
+    showNonAuth,
     show,
     create,
     update,

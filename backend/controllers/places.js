@@ -1,20 +1,6 @@
 const Place = require('../models/placesToStay');
 const Profile = require('../models/profile');
 
-const index = (req, res) => {
-    Profile.find({}, (err, foundPlaces) => {
-        if (err) console.log(err)
-        res.json(foundPlaces)
-    });
-}
-
-const show = (req, res) => {
-    Profile.findById(req.params.id, (err, foundPlaces) => {
-        if (err) console.log('Error in games#show:', err);
-        res.json(foundPlaces);
-    });
-};
-
 const create = async (req, res) => {
     // Step 1: gather userId from req.user and find profile and gather body vars
     const { _id } = req.user 
