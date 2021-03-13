@@ -138,7 +138,7 @@ const update = async (req, res) => {
 
 /**
  * 
- * @param {*} req.params === CommentId 
+ * @param {*} req.params === CommentId && isGuest -- need to pass a boolean.
  * @param {*} res 
  * 
  *  * Goal: Destroy a single comment in the comments array

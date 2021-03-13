@@ -14,7 +14,8 @@ router.delete('/:id/:isGuest', passport.authenticate('jwt', { session: false }),
 /**
  * Dear Front End: A note on params
  * 
- * for the delete route you need to pass the commentId and then if the user is taking a guest comment pass true else false
+ * for the delete route you need to pass the commentId and then if the user is taking a guest 
+ * comment pass true else false.  Pass them as string please. 
  * 
  */
 
