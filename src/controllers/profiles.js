@@ -51,9 +51,9 @@ const showNonAuth = (req, res) => {
 }
 
 const show = (req, res) => {
-    db.findById(req.params.id, (err, foundComments) => {
+    db.findById(req.user._id, (err, foundProfile) => {
         if (err) console.log('Error in games#show:', err);
-        res.json(foundComments);
+        res.json(foundProfile);
     });
 };
 
