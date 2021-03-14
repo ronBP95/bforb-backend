@@ -7,7 +7,6 @@ const passport = require('passport')
 router.post('/', passport.authenticate('jwt', { session: false }), ctrl.guests.create);
 router.put('/:id', passport.authenticate('jwt', { session: false }), ctrl.guests.update);
 router.delete('/:id', passport.authenticate('jwt', { session: false }), ctrl.guests.destroy);
-router.delete('/:id', ctrl.guests.destroy);
 
 
 

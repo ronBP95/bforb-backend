@@ -60,12 +60,3 @@ module.exports = {
     update,
     destroy,
 };
-
-
-    // db.findByIdAndDelete(req.params.id, (err, deletedPlaces) => {
-    //     if (err) {
-    //         console.log('Error in games#destroy:', err);
-    //     } else {
-    //         res.json(deletedPlaces)
-    //     }
-    // });

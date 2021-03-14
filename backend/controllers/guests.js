@@ -5,8 +5,7 @@ const Profile = require('../models/profile');
  * Create guestProfile for user 
  * User authenticated login in routes/index.js
  * 
- * TODO: Write logic for numberOfStays and Ratings
- * TODO: Add logic to numberOfStays
+ * Completed!
  */
  const create = async (req, res) => {
 
