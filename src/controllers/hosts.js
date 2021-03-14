@@ -41,7 +41,7 @@ const update = async (req, res) => {
     res.json(myHostProfile.host[0])
 };
 
-const destroy = (req, res) => {
+const destroy = async (req, res) => {
     const userId = req.user._id
     const hostId = req.params.id
     const myProfile = await Profile.findOne({ userId })
