@@ -22,4 +22,11 @@ db.on('error', (error) => {
   console.log(`Database error\n${error}`);
 });
 
-module.exports.User = require('./User');
+module.exports = {
+    User: require('./user'),
+    Guest: require('./guest'),
+    Host: require('./host'),
+    Places: require('./placesToStay'),
+    Comments: require('./comments'),
+    Profile: require('./profile')
+}

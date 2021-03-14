@@ -1,0 +1,510 @@
+/* 1 */
+{
+    "_id" : ObjectId("60493d7cc1a0ab8d8cf97cc0"),
+    "userId" : "60493cb9c1a0ab8d8cf97cbd",
+    "name" : "Aaron Hernandez",
+    "userPhoto" : "https://res.cloudinary.com/dbljwcjis/image/upload/v1614008727/uq6uvjdbyrc6bqceubrd.jpg",
+    "locations" : "Wichita, KS",
+    "aboutMe" : "Here is a thing about me",
+    "whyTravel" : "I travel because I live in KS",
+    "favBreakfast" : "Eggs Benedict",
+    "memberSince" : ISODate("2021-03-10T21:43:24.971Z"),
+    "isGuest" : true,
+    "isHost" : true,
+    "guest" : [ 
+        {
+            "_id" : ObjectId("60493d90c1a0ab8d8cf97cc1"),
+            "numberOfStays" : 50,
+            "rating" : 4.2,
+            "wantsToMake" : "Poutine",
+            "comments" : [ 
+                {
+                    "_id" : ObjectId("60493fae7acbfd8dbea0444f"),
+                    "isGuest" : true,
+                    "author" : "60493cb9c1a0ab8d8cf97cbd",
+                    "rating" : 4,
+                    "comment" : "Great host! Look forward to staying again",
+                    "writtenAbout" : ObjectId("60493e557acbfd8dbea0443e")
+                }, 
+                {
+                    "_id" : ObjectId("60494499815e798f9ac1f7c7"),
+                    "isGuest" : true,
+                    "author" : "60493cb9c1a0ab8d8cf97cbd",
+                    "rating" : 4,
+                    "comment" : "Great host! Look forward to staying again",
+                    "writtenAbout" : ObjectId("60493e557acbfd8dbea0443e")
+                }, 
+                {
+                    "_id" : ObjectId("604945228360288fac74456b"),
+                    "isGuest" : true,
+                    "author" : "60493cb9c1a0ab8d8cf97cbd",
+                    "rating" : 4,
+                    "comment" : "Wow! Mocha was totally rude and did not eat anymore of my breakfast.  At one point she even called me a 5'7 man",
+                    "writtenAbout" : ObjectId("60493ebe7acbfd8dbea04445")
+                }
+            ]
+        }, 
+        {
+            "_id" : ObjectId("60493e687acbfd8dbea0443f"),
+            "numberOfStays" : 29,
+            "rating" : 4.2,
+            "wantsToMake" : "Food",
+            "comments" : []
+        }
+    ],
+    "host" : [ 
+        {
+            "placeOffered" : [],
+            "_id" : ObjectId("60493da3c1a0ab8d8cf97cc3"),
+            "location" : "Santa Clarita, CA",
+            "numberOfGuests" : 4,
+            "rating" : 5,
+            "wantsForBreakfast" : "Cereal",
+            "comments" : []
+        }, 
+        {
+            "_id" : ObjectId("604951f12aca05925918d3cf"),
+            "rating" : 4.2,
+            "placesToStay" : [],
+            "comments" : []
+        }, 
+        {
+            "_id" : ObjectId("6049524d2aca05925918d3d1"),
+            "rating" : 4.2,
+            "placesToStay" : [],
+            "comments" : []
+        }, 
+        {
+            "_id" : ObjectId("604952c71dc2a79290982df3"),
+            "rating" : 4.2,
+            "placesToStay" : [],
+            "comments" : []
+        }, 
+        {
+            "_id" : ObjectId("60495311a5eb6592a3efb580"),
+            "rating" : 4.2,
+            "placesToStay" : [],
+            "comments" : []
+        }, 
+        {
+            "_id" : ObjectId("60495320e3d6a392ae1c68af"),
+            "rating" : 4.2,
+            "placesToStay" : [],
+            "comments" : []
+        }, 
+        {
+            "_id" : ObjectId("6049532860164992b8bd6496"),
+            "rating" : 4.2,
+            "placesToStay" : [],
+            "comments" : []
+        }
+    ],
+    "__v" : 12
+}
+
+/* 2 */
+{
+    "_id" : ObjectId("60493e557acbfd8dbea0443e"),
+    "userId" : "60493ca1c1a0ab8d8cf97cbc",
+    "name" : "Ron Magpantay",
+    "userPhoto" : "https://res.cloudinary.com/dbljwcjis/image/upload/v1614008727/uq6uvjdbyrc6bqceubrd.jpg",
+    "locations" : "Newton, KS",
+    "aboutMe" : "Here is a thing about me",
+    "whyTravel" : "I travel because I live in Newton",
+    "favBreakfast" : "Pancakes",
+    "memberSince" : ISODate("2021-03-10T21:47:01.607Z"),
+    "isGuest" : true,
+    "isHost" : true,
+    "guest" : [ 
+        {
+            "_id" : ObjectId("60493e737acbfd8dbea04441"),
+            "numberOfStays" : 29,
+            "rating" : 4.2,
+            "wantsToMake" : "Food",
+            "comments" : []
+        }
+    ],
+    "host" : [ 
+        {
+            "placeOffered" : [],
+            "_id" : ObjectId("60493e7c7acbfd8dbea04443"),
+            "location" : "Santa Clarita, CA",
+            "numberOfGuests" : 4,
+            "rating" : 5,
+            "wantsForBreakfast" : "Cereal",
+            "comments" : [ 
+                {
+                    "_id" : ObjectId("60494499815e798f9ac1f7c7"),
+                    "isGuest" : true,
+                    "author" : "60493cb9c1a0ab8d8cf97cbd",
+                    "rating" : 4,
+                    "comment" : "Great host! Look forward to staying again",
+                    "writtenAbout" : ObjectId("60493e557acbfd8dbea0443e")
+                }
+            ]
+        }
+    ],
+    "__v" : 3
+}
+
+/* 3 */
+{
+    "_id" : ObjectId("60493ebe7acbfd8dbea04445"),
+    "userId" : "60493cffc1a0ab8d8cf97cbf",
+    "name" : "Mocha Brown",
+    "userPhoto" : "https://res.cloudinary.com/dbljwcjis/image/upload/v1614008727/uq6uvjdbyrc6bqceubrd.jpg",
+    "locations" : "Detroit, MI",
+    "aboutMe" : "Here is a thing about me",
+    "whyTravel" : "I travel because I live in Detroit",
+    "favBreakfast" : "Tea",
+    "memberSince" : ISODate("2021-03-10T21:48:46.508Z"),
+    "isGuest" : true,
+    "isHost" : true,
+    "guest" : [ 
+        {
+            "_id" : ObjectId("60493ed37acbfd8dbea04446"),
+            "numberOfStays" : 8,
+            "rating" : 2,
+            "wantsToMake" : "You cry",
+            "comments" : []
+        }
+    ],
+    "host" : [ 
+        {
+            "placeOffered" : [],
+            "_id" : ObjectId("60493edf7acbfd8dbea04448"),
+            "location" : "Santa Clarita, CA",
+            "numberOfGuests" : 4,
+            "rating" : 5,
+            "wantsForBreakfast" : "Cereal",
+            "comments" : [ 
+                {
+                    "_id" : ObjectId("604945228360288fac74456b"),
+                    "isGuest" : true,
+                    "author" : "60493cb9c1a0ab8d8cf97cbd",
+                    "rating" : 4,
+                    "comment" : "Wow! Mocha was totally rude and did not eat anymore of my breakfast.  At one point she even called me a 5'7 man",
+                    "writtenAbout" : ObjectId("60493ebe7acbfd8dbea04445")
+                }, 
+                {
+                    "_id" : ObjectId("6049585be4a3f69367305220"),
+                    "isGuest" : true,
+                    "author" : "604956f37cd584934bc7ea5d",
+                    "rating" : 4,
+                    "comment" : "Wow! Mocha was totally rude and did not eat anymore of my breakfast.  At one point she even called me a 5'7 man",
+                    "writtenAbout" : ObjectId("60493ebe7acbfd8dbea04445")
+                }, 
+                {
+                    "_id" : ObjectId("60495920e4a3f6936730522b"),
+                    "isGuest" : true,
+                    "author" : "604956f37cd584934bc7ea5d",
+                    "rating" : 4,
+                    "comment" : "this is another comment",
+                    "writtenAbout" : ObjectId("60493ebe7acbfd8dbea04445")
+                }
+            ]
+        }
+    ],
+    "__v" : 5
+}
+
+/* 4 */
+{
+    "_id" : ObjectId("60493f1e7acbfd8dbea0444a"),
+    "userId" : "60493cc6c1a0ab8d8cf97cbe",
+    "name" : "Erik Grivalsky",
+    "userPhoto" : "https://res.cloudinary.com/dbljwcjis/image/upload/v1614008727/uq6uvjdbyrc6bqceubrd.jpg",
+    "locations" : "Albuquerque, NM",
+    "aboutMe" : "Here is a thing about me",
+    "whyTravel" : "I travel because I live in NM",
+    "favBreakfast" : "Eggs",
+    "memberSince" : ISODate("2021-03-10T21:50:22.672Z"),
+    "isGuest" : true,
+    "isHost" : true,
+    "guest" : [ 
+        {
+            "_id" : ObjectId("60493f587acbfd8dbea0444d"),
+            "numberOfStays" : 8,
+            "rating" : 2,
+            "wantsToMake" : "A friend",
+            "comments" : []
+        }
+    ],
+    "host" : [ 
+        {
+            "placeOffered" : [],
+            "_id" : ObjectId("60493f3d7acbfd8dbea0444b"),
+            "location" : "My Place, CA",
+            "numberOfGuests" : 2,
+            "rating" : 5,
+            "wantsForBreakfast" : "Cereal",
+            "comments" : []
+        }
+    ],
+    "__v" : 2
+}
+
+/* 5 */
+{
+    "_id" : ObjectId("6049581fe4a3f6936730521b"),
+    "userId" : "604956f37cd584934bc7ea5d",
+    "name" : "Leo Brooks",
+    "userPhoto" : "https://res.cloudinary.com/dbljwcjis/image/upload/v1614008727/uq6uvjdbyrc6bqceubrd.jpg",
+    "locations" : "Your Mom's House, WA",
+    "aboutMe" : "Here is a thing about me",
+    "whyTravel" : "I travel because Tacoma is the worst",
+    "favBreakfast" : "Oods of Noods",
+    "memberSince" : ISODate("2021-03-10T23:37:03.290Z"),
+    "isGuest" : true,
+    "isHost" : true,
+    "guest" : [ 
+        {
+            "_id" : ObjectId("6049583fe4a3f6936730521c"),
+            "numberOfStays" : 8,
+            "rating" : 2,
+            "wantsToMake" : "eggs",
+            "comments" : [ 
+                {
+                    "_id" : ObjectId("6049585be4a3f69367305220"),
+                    "isGuest" : true,
+                    "author" : "604956f37cd584934bc7ea5d",
+                    "rating" : 4,
+                    "comment" : "Wow! Mocha was totally rude and did not eat anymore of my breakfast.  At one point she even called me a 5'7 man",
+                    "writtenAbout" : ObjectId("60493ebe7acbfd8dbea04445")
+                }, 
+                {
+                    "_id" : ObjectId("60495920e4a3f6936730522b"),
+                    "isGuest" : true,
+                    "author" : "604956f37cd584934bc7ea5d",
+                    "rating" : 4,
+                    "comment" : "this is another comment",
+                    "writtenAbout" : ObjectId("60493ebe7acbfd8dbea04445")
+                }
+            ]
+        }
+    ],
+    "host" : [ 
+        {
+            "_id" : ObjectId("60495851e4a3f6936730521e"),
+            "rating" : 5,
+            "placesToStay" : [ 
+                {
+                    "_id" : ObjectId("60495bcfea00cf945ae1eb9b"),
+                    "title" : "here's a newer place",
+                    "bedPhoto" : "new bed bedPhoto",
+                    "description" : "Here is a brand new description",
+                    "rating" : 5
+                }, 
+                {
+                    "_id" : ObjectId("60495beaea00cf945ae1eb9d"),
+                    "title" : "Spare Room",
+                    "bedPhoto" : "this is a bed photo",
+                    "description" : "this is aour spare room where we party",
+                    "rating" : 5
+                }
+            ],
+            "comments" : []
+        }
+    ],
+    "__v" : 6
+}
+
+/* 6 */
+{
+    "_id" : ObjectId("604aa976640d06b08d8f73dc"),
+    "userId" : "604aa862e47eb0b08134fd00",
+    "name" : "Test1 User",
+    "userPhoto" : "https://res.cloudinary.com/dbljwcjis/image/upload/v1614008727/uq6uvjdbyrc6bqceubrd.jpg",
+    "locations" : "TestOne",
+    "aboutMe" : "TestOne",
+    "whyTravel" : "TestOne",
+    "favBreakfast" : "TestOne",
+    "memberSince" : ISODate("2021-03-11T23:36:22.183Z"),
+    "isGuest" : true,
+    "isHost" : true,
+    "guest" : [ 
+        {
+            "_id" : ObjectId("604aa991640d06b08d8f73de"),
+            "wantsToMake" : "TestOne",
+            "comments" : [ 
+                {
+                    "_id" : ObjectId("604aaabb640d06b08d8f73e9"),
+                    "isGuest" : true,
+                    "author" : "ACCOUNT DELETED",
+                    "rating" : 5,
+                    "comment" : "this is comment from TestTwo",
+                    "writtenAbout" : "604aa976640d06b08d8f73dc"
+                }, 
+                {
+                    "_id" : ObjectId("604aabb2a030d5b0eaabd81e"),
+                    "isGuest" : false,
+                    "author" : "604aa86de47eb0b08134fd01",
+                    "rating" : 5,
+                    "comment" : "this is comment from TestTwo",
+                    "writtenAbout" : "604aa976640d06b08d8f73dc"
+                }, 
+                {
+                    "_id" : ObjectId("604aabcaa030d5b0eaabd821"),
+                    "isGuest" : false,
+                    "author" : "604aa86de47eb0b08134fd01",
+                    "rating" : 5,
+                    "comment" : "this is comment from TestTwo",
+                    "writtenAbout" : "604aa976640d06b08d8f73dc"
+                }
+            ]
+        }, 
+        {
+            "_id" : ObjectId("604aaa40640d06b08d8f73e3"),
+            "wantsToMake" : "TestTwo",
+            "comments" : []
+        }
+    ],
+    "host" : [ 
+        {
+            "_id" : ObjectId("604aa9a5640d06b08d8f73e0"),
+            "location" : "TestOne",
+            "wantsForBreakfast" : "TestOne",
+            "placesToStay" : [],
+            "comments" : [ 
+                {
+                    "_id" : ObjectId("604aaabb640d06b08d8f73e9"),
+                    "isGuest" : true,
+                    "author" : "ACCOUNT DELETED",
+                    "rating" : 5,
+                    "comment" : "this is comment from TestTwo",
+                    "writtenAbout" : "604aa976640d06b08d8f73dc"
+                }, 
+                {
+                    "_id" : ObjectId("604aab21640d06b08d8f73ec"),
+                    "isGuest" : true,
+                    "author" : "604aa86de47eb0b08134fd01",
+                    "rating" : 5,
+                    "comment" : "this is comment from TestTwo",
+                    "writtenAbout" : "604aa976640d06b08d8f73dc"
+                }, 
+                {
+                    "_id" : ObjectId("604aab31640d06b08d8f73ef"),
+                    "isGuest" : false,
+                    "author" : "604aa86de47eb0b08134fd01",
+                    "rating" : 5,
+                    "comment" : "this is comment from TestTwo",
+                    "writtenAbout" : "604aa976640d06b08d8f73dc"
+                }, 
+                {
+                    "_id" : ObjectId("604aab75588e9eb0ce8a2251"),
+                    "isGuest" : false,
+                    "author" : "604aa86de47eb0b08134fd01",
+                    "rating" : 5,
+                    "comment" : "this is comment from TestTwo",
+                    "writtenAbout" : "604aa976640d06b08d8f73dc"
+                }, 
+                {
+                    "_id" : ObjectId("604aaba1e300a1b0d98e53b4"),
+                    "isGuest" : false,
+                    "author" : "604aa86de47eb0b08134fd01",
+                    "rating" : 5,
+                    "comment" : "this is comment from TestTwo",
+                    "writtenAbout" : "604aa976640d06b08d8f73dc"
+                }, 
+                {
+                    "_id" : ObjectId("604aabf2a030d5b0eaabd824"),
+                    "isGuest" : false,
+                    "author" : "604aa86de47eb0b08134fd01",
+                    "rating" : 5,
+                    "comment" : "this is comment from TestTwo",
+                    "writtenAbout" : "604aa976640d06b08d8f73dc"
+                }
+            ]
+        }
+    ],
+    "__v" : 12
+}
+
+/* 7 */
+{
+    "_id" : ObjectId("604aa98a640d06b08d8f73dd"),
+    "userId" : "604aa862e47eb0b08134fd00",
+    "name" : "Test1 User",
+    "userPhoto" : "https://res.cloudinary.com/dbljwcjis/image/upload/v1614008727/uq6uvjdbyrc6bqceubrd.jpg",
+    "locations" : "TestOne",
+    "aboutMe" : "TestOne",
+    "whyTravel" : "TestOne",
+    "favBreakfast" : "TestOne",
+    "memberSince" : ISODate("2021-03-11T23:36:42.548Z"),
+    "isGuest" : true,
+    "isHost" : true,
+    "guest" : [],
+    "host" : [],
+    "__v" : 0
+}
+
+
+/* 1 */
+{
+    "_id" : ObjectId("60493ca1c1a0ab8d8cf97cbc"),
+    "date" : ISODate("2021-03-10T21:39:29.346Z"),
+    "name" : "Ron Magpantay",
+    "email" : "Ron@user.com",
+    "password" : "$2a$10$M3zVRABEO5HxJWLldRDPmuzfC6Fh0FUNv7DTIxFi9CSEqv1aa2c2e",
+    "__v" : 0
+}
+
+/* 2 */
+{
+    "_id" : ObjectId("60493cb9c1a0ab8d8cf97cbd"),
+    "date" : ISODate("2021-03-10T21:39:29.346Z"),
+    "name" : "Aaron Hernandez",
+    "email" : "aaron@user.com",
+    "password" : "$2a$10$9rYKurTSyduzqURhgpmgYueiO/kFlzXPAwHXDgjNAHDZzLvZiIAOi",
+    "__v" : 0
+}
+
+/* 3 */
+{
+    "_id" : ObjectId("60493cc6c1a0ab8d8cf97cbe"),
+    "date" : ISODate("2021-03-10T21:39:29.346Z"),
+    "name" : "Erik Grivalsky",
+    "email" : "Erik@user.com",
+    "password" : "$2a$10$wHq0SdJ2WKUe8FPjJd1X5uoSNc3QS2bB3TjzKz9S1yRTrwns5nsTy",
+    "__v" : 0
+}
+
+/* 4 */
+{
+    "_id" : ObjectId("60493cffc1a0ab8d8cf97cbf"),
+    "date" : ISODate("2021-03-10T21:39:29.346Z"),
+    "name" : "Mocha Brown",
+    "email" : "Mocha@user.com",
+    "password" : "$2a$10$Z38.tP18hU69VLKUF9e79.2nIgUwOCRSnWos0z6FxHOao7RbrplqG",
+    "__v" : 0
+}
+
+/* 5 */
+{
+    "_id" : ObjectId("604956f37cd584934bc7ea5d"),
+    "date" : ISODate("2021-03-10T23:31:19.446Z"),
+    "name" : "Leo Brooks",
+    "email" : "Leo@user.com",
+    "password" : "$2a$10$Pl9vMvWtavblEUScj0IIAe0tdfaehvHUNhV4Tav5EDNJMJ2du623q",
+    "__v" : 0
+}
+
+/* 6 */
+{
+    "_id" : ObjectId("604aa862e47eb0b08134fd00"),
+    "date" : ISODate("2021-03-11T23:30:50.284Z"),
+    "name" : "Test1 User",
+    "email" : "test1@user.com",
+    "password" : "$2a$10$OsRKnxrjaf8zRBFDLSkilOaxQ7XXMps1RnkpGx9zA.FYqjLjtr136",
+    "__v" : 0
+}
+
+/* 7 */
+{
+    "_id" : ObjectId("604aa86de47eb0b08134fd01"),
+    "date" : ISODate("2021-03-11T23:30:50.284Z"),
+    "name" : "Test2 User",
+    "email" : "test2@user.com",
+    "password" : "$2a$10$fzbEVxb6TVgENihPTKLgcO8gmqxBBs.Dzaj54i9FK4Xw20S0KdObu",
+    "__v" : 0
+}
