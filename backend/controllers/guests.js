@@ -43,7 +43,15 @@ const update = async (req, res) => {
 
 const destroy = async (req, res) => {
     const userId = req.user._id
+    const guestId = req.params.id
     const myProfile = await Profile.findOne({ userId })
+    const index = myProfile.guest.findIndex( ({ _id }) => _id === guestId )
+
+    myProfile.guest.splice(index, 1)
+
+    myProfile.save()
+
+    res.json(myProfile)
 };
 
 module.exports = {
