@@ -1,6 +1,4 @@
 const Comment = require('../models/comments');
-// const Guest = require('../models/guest');
-// const Host = require('../models/host');
 const Profile = require('../models/profile');
 
 /**
