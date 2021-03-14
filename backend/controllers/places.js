@@ -40,19 +40,22 @@ const update = async (req, res) => {
     res.json(myPlaceProfile.host[0].placesToStay[place])
 };
 
-const destroy = (req, res) => {
-    db.findByIdAndDelete(req.params.id, (err, deletedPlaces) => {
-        if (err) {
-            console.log('Error in games#destroy:', err);
-        } else {
-            res.json(deletedPlaces)
-        }
-    });
-};
+const destroy = async (req, res) => {
+    const placesId = req.params.id
+    const userId = req.user._id
+    const myProfile = await Profile.findOne({ userId })
+
+    const placesArray = myProfile.host[0].placesToStay
+    const placeToDelete = myProfile.host[0].placesToStay.findIndex( ({ _id }) => String(_id) === placesId )
+
+    placesArray.splice(placeToDelete, 1)
+
+    myProfile.save()
+
+    res.json(myProfile)
+}
 
 module.exports = {
-    index,
-    show,
     create,
     update,
     destroy,

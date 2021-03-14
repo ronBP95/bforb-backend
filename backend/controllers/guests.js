@@ -1,27 +1,11 @@
 const Guest = require('../models/guest');
 const Profile = require('../models/profile');
 
-
-const index = (req, res) => {
-    db.find({}, (err, foundPlaces) => {
-        if (err) console.log(err)
-        res.json(foundPlaces)
-    });
-}
-
-const show = (req, res) => {
-    db.findById(req.params.id, (err, foundPlaces) => {
-        if (err) console.log('Error in games#show:', err);
-        res.json(foundPlaces);
-    });
-};
-
 /**
  * Create guestProfile for user 
  * User authenticated login in routes/index.js
  * 
- * TODO: Write logic for numberOfStays and Ratings
- * TODO: Add logic to numberOfStays
+ * Completed!
  */
  const create = async (req, res) => {
 
@@ -56,19 +40,20 @@ const update = async (req, res) => {
     res.json(myGuestProfile.guest[0])
 };
 
-const destroy = (req, res) => {
-    db.findByIdAndDelete(req.params.id, (err, deletedPlaces) => {
-        if (err) {
-            console.log('Error in games#destroy:', err);
-        } else {
-            res.json(deletedPlaces)
-        }
-    });
+const destroy = async (req, res) => {
+    const userId = req.user._id
+    const guestId = req.params.id
+    const myProfile = await Profile.findOne({ userId })
+    const index = myProfile.guest.findIndex( ({ _id }) => _id === guestId )
+
+    myProfile.guest.splice(index, 1)
+
+    myProfile.save()
+
+    res.json(myProfile)
 };
 
 module.exports = {
-    index,
-    show,
     create,
     update,
     destroy,

@@ -7,7 +7,7 @@ const passport = require('passport')
 // Create a non-authenticated get route that does not include any user information.
 router.post('/', passport.authenticate('jwt', { session: false }), ctrl.places.create);
 router.put('/:id/:placeNum', passport.authenticate('jwt', { session: false }), ctrl.places.update);
-router.delete('/:id', ctrl.places.destroy);
+router.delete('/:id', passport.authenticate('jwt', { session: false }), ctrl.places.destroy);
 
 // exports
 module.exports = router;

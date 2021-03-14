@@ -104,55 +104,6 @@ const update = async (req, res) => {
  */
 const destroy = async (req, res) => {
 
-    // const myProfile = await db.findOne({ userId: req.user._id })
-    // const guestComments = myProfile.guest[0].comments
-    // const hostComments = myProfile.host[0].comments
-
-    // let otherProfile = ''
-    // let otherComment = ''
-
-    // // in the guestComments section of myProfile
-    // for(let i = 0; i < guestComments.length; i++){
-    //     const author = guestComments[i]
-    //     const myComment = guestComments[i].comment
-    //     const writtenAbout = guestComments[i].writtenAbout
-    //     otherProfile = await db.findOne({ _id: writtenAbout })
-    //     otherComment = otherProfile.host[0].comments.find(  ({ comment }) => comment === myComment )
-
-    //     // if guestComment author is not the same, go to host and change written about
-    //     // go to host and change the writtenBAbout
-    //     if (author !== req.user._id){
-    //         otherComment.author = 'ACCOUNT DELETED'
-    //     } else if (author === req.user._id) {
-    //         otherComment.writtenAbout = 'ACCOUNT DELETED'
-    //     }
-    // }
-
-    // otherProfile.save()
-    // console.log(otherProfile.host[0].comments)
-
-    // // console.log(otherProfile.host[0].comments)
-
-    // for(let i = 0; i < hostComments.length; i++){
-    //     // const { author, comment } = hostComments[i]
-    //     const author = guestAuthor[i].author
-    //     const myComment = hostComments[i].comment
-    //     const writtenAbout = hostComments[i].writtenAbout
-    //     otherProfile = await db.findOne({ _id: writtenAbout })
-    //     otherComment = otherProfile.guest[0].comments.find(  ({ comment }) => comment === myComment )
-
-    //     if (author !== req.user._id){
-    //         otherComment.author = 'ACCOUNT DELETED'
-    //     } else if (author === req.user._id) {
-    //         otherComment.writtenAbout = 'ACCOUNT DELETED'
-    //     }
-    // }
-
-    // otherProfile.save()
-    // console.log(otherProfile.host[0].comments)
-
-    // // console.log(otherProfile)
-
     const myProfile = await db.findOne({ userId: req.user._id })
     const id = myProfile._id
 
