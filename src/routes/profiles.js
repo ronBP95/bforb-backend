@@ -7,9 +7,9 @@ const passport = require('passport')
 router.get('/', passport.authenticate('jwt', { session: false }), ctrl.profiles.index);
 router.get('/showAll', ctrl.profiles.showNonAuth)
 router.get('/myProfile', passport.authenticate('jwt', { session: false }), ctrl.profiles.show);
-router.post('/', passport.authenticate('jwt', { session: false }), ctrl.profiles.create)
-router.put('/', passport.authenticate('jwt', { session: false }), ctrl.profiles.update)
-router.delete('/', passport.authenticate('jwt', { session: false }), ctrl.profiles.destroy)
+router.post('/post', passport.authenticate('jwt', { session: false }), ctrl.profiles.create)
+router.put('/put', passport.authenticate('jwt', { session: false }), ctrl.profiles.update)
+router.delete('/delete', passport.authenticate('jwt', { session: false }), ctrl.profiles.destroy)
 
 // exports
 module.exports = router;
