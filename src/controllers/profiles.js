@@ -50,11 +50,11 @@ const showNonAuth = (req, res) => {
     });
 }
 
-const show = (req, res) => {
-    db.findById(req.user._id, (err, foundProfile) => {
-        if (err) console.log('Error in games#show:', err);
-        res.json(foundProfile);
-    });
+const show = async (req, res) => {
+    const userId = req.user._id
+    const myProfile = await Profile.find({ userId })
+    
+    res.json(myProfile)
 };
 
 // embed the User id in the profile.
